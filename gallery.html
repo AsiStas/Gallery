@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Счастливые моменты · Свадьба Марии и Александра</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@5.0.8/index.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/great-vibes@5.0.8/index.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.8/index.min.css">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+        font-family: 'Cormorant Garamond', 'Georgia', serif;
+        min-height: 100vh;
+        padding: 40px 20px;
+        color: #5a4a3a;
+        position: relative;
+        overflow-x: hidden;
+        background: #fdf8f3;
+    }
+    
+    /* Свадебный фон с нежными градиентами */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: 
+            radial-gradient(ellipse at 15% 20%, rgba(244, 208, 216, 0.5) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 30%, rgba(255, 235, 205, 0.6) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 80%, rgba(232, 213, 232, 0.4) 0%, transparent 50%),
+            radial-gradient(ellipse at 20% 85%, rgba(255, 228, 220, 0.5) 0%, transparent 50%),
+            linear-gradient(180deg, #fdf8f3 0%, #faf0e6 50%, #f9ebe0 100%);
+        z-index: -2;
+    }
+    
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image: 
+            radial-gradient(circle at 25% 35%, rgba(212, 175, 135, 0.08) 1px, transparent 1px),
+            radial-gradient(circle at 75% 65%, rgba(212, 175, 135, 0.08) 1px, transparent 1px);
+        background-size: 60px 60px, 80px 80px;
+        z-index: -1;
+        pointer-events: none;
+    }
+    
+    header {
+        text-align: center;
+        margin-bottom: 50px;
+        animation: fadeIn 1.2s ease;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .monogram {
+        font-family: 'Great Vibes', cursive;
+        font-size: 5em;
+        color: #c9a876;
+        margin-bottom: 5px;
+        text-shadow: 2px 2px 4px rgba(139, 111, 78, 0.1);
+        letter-spacing: 10px;
+    }
+    
+    .monogram .amp {
+        color: #d4a5a5;
+        font-size: 0.8em;
+        margin: 0 10px;
+    }
+    
+    .script-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: 4em;
+        color: #8b6f4e;
+        text-shadow: 2px 2px 4px rgba(139, 111, 78, 0.1);
+        margin-bottom: 10px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        line-height: 1.1;
+    }
+    
+    .names {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.2em;
+        color: #6b5a4a;
+        letter-spacing: 4px;
+        font-weight: 400;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+    
+    .date {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4em;
+        color: #c9a876;
+        letter-spacing: 8px;
+        font-weight: 300;
+        margin-bottom: 20px;
+    }
+    
+    .floral-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px auto;
+        color: #c9a876;
+        font-size: 1.5em;
+    }
+    
+    .floral-divider .line {
+        width: 100px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #c9a876, transparent);
+    }
+    
+    .subtitle {
+        font-size: 1.3em;
+        font-style: italic;
+        color: #a08970;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+    }
+    
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    
+    .btn {
+        padding: 13px 30px;
+        border: none;
+        border-radius: 30px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.05em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(139, 111, 78, 0.15);
+    }
+    
+    .btn-add {
+        background: linear-gradient(135deg, #d4a574, #c9a876);
+        color: #fff;
+    }
+    
+    .btn-add:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(201, 168, 118, 0.4);
+        background: linear-gradient(135deg, #c9a876, #b8956a);
+    }
+    
+    .btn-clear {
+        background: linear-gradient(135deg, #e8c4c4, #d4a5a5);
+        color: #fff;
+    }
+    
+    .btn-clear:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(212, 165, 165, 0.4);
+    }
+    
+    .btn-count {
+        background: rgba(255, 255, 255, 0.7);
+        color: #8b6f4e;
+        cursor: default;
+        border: 1px solid rgba(201, 168, 118, 0.4);
+        backdrop-filter: blur(10px);
+    }
+    
+    #fileInput { display: none; }
+    
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .gallery-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(139, 111, 78, 0.15);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        aspect-ratio: 4/3;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(201, 168, 118, 0.3);
+        animation: slideIn 0.6s ease;
+    }
+    
+    .gallery-item::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border: 8px solid rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        pointer-events: none;
+        z-index: 3;
+        box-shadow: inset 0 0 0 1px rgba(201, 168, 118, 0.2);
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 45px rgba(139, 111, 78, 0.25);
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+    }
+    
+    .gallery-item:hover img {
+        transform: scale(1.08);
+    }
+    
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(90, 74, 58, 0.9));
+        padding: 25px 20px 20px;
+        transform: translateY(100%);
+        transition: transform 0.5s ease;
+        z-index: 2;
+    }
+    
+    .gallery-item:hover .overlay {
+        transform: translateY(0);
+    }
+    
+    .overlay h3 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.8em;
+        color: #fff;
+        margin-bottom: 5px;
+        font-weight: 400;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    .overlay p {
+        font-size: 1em;
+        color: rgba(255, 255, 255, 0.9);
+        font-style: italic;
+        letter-spacing: 0.5px;
+    }
+    
+    .badge {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: rgba(255, 255, 255, 0.95);
+        color: #8b6f4e;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        z-index: 4;
+        box-shadow: 0 2px 8px rgba(139, 111, 78, 0.2);
+        letter-spacing: 1px;
+        border: 1px solid rgba(201, 168, 118, 0.3);
+    }
+    
+    .delete-btn {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        background: rgba(220, 120, 120, 0.9);
+        color: #fff;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.3em;
+        cursor: pointer;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s, background 0.3s;
+        opacity: 0;
+        font-family: serif;
+    }
+    
+    .gallery-item:hover .delete-btn {
+        opacity: 1;
+    }
+    
+    .delete-btn:hover {
+        transform: rotate(90deg) scale(1.1);
+        background: rgba(180, 80, 80, 0.95);
+    }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(60, 45, 35, 0.92);
+        backdrop-filter: blur(12px);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.4s ease;
+    }
+    
+    .modal.active {
+        display: flex;
+    }
+    
+    .modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+        background: linear-gradient(135deg, rgba(253, 248, 243, 0.98), rgba(250, 240, 230, 0.98));
+        border-radius: 20px;
+        padding: 35px 90px 30px;
+        box-shadow: 0 0 80px rgba(201, 168, 118, 0.3);
+        border: 1px solid rgba(201, 168, 118, 0.4);
+        animation: zoomIn 0.5s ease;
+    }
+    
+    .modal-content::before {
+        content: '';
+        position: absolute;
+        top: 10px; left: 10px; right: 10px; bottom: 10px;
+        border: 1px solid rgba(201, 168, 118, 0.3);
+        border-radius: 15px;
+        pointer-events: none;
+    }
+    
+    .modal-content img {
+        max-width: 100%;
+        max-height: 65vh;
+        display: block;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(139, 111, 78, 0.3);
+        transition: opacity 0.4s ease;
+    }
+    
+    .modal-title {
+        text-align: center;
+        margin-top: 20px;
+        font-family: 'Great Vibes', cursive;
+        color: #8b6f4e;
+        font-size: 2.5em;
+        font-weight: 400;
+        text-shadow: 1px 1px 2px rgba(139, 111, 78, 0.1);
+    }
+    
+    .modal-counter {
+        text-align: center;
+        margin-top: 10px;
+        color: #a08970;
+        font-size: 1em;
+        letter-spacing: 3px;
+        font-style: italic;
+    }
+    
+    .close-btn {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        background: linear-gradient(135deg, #d4a5a5, #c98989);
+        color: #fff;
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 1.6em;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(212, 165, 165, 0.4);
+    }
+    
+    .close-btn:hover {
+        transform: rotate(90deg) scale(1.1);
+        box-shadow: 0 6px 20px rgba(212, 165, 165, 0.6);
+    }
+    
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.85);
+        color: #8b6f4e;
+        border: 1px solid rgba(201, 168, 118, 0.4);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        font-size: 2em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        box-shadow: 0 4px 20px rgba(139, 111, 78, 0.2);
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 300;
+    }
+    
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 25px rgba(139, 111, 78, 0.3);
+        color: #6b5a4a;
+    }
+    
+    .nav-btn.prev { left: -28px; }
+    .nav-btn.next { right: -28px; }
+    
+    .nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+    
+    .nav-btn:disabled:hover {
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .dots-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 18px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(201, 168, 118, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+    }
+    
+    .dot.active {
+        background: #c9a876;
+        transform: scale(1.4);
+        box-shadow: 0 0 10px rgba(201, 168, 118, 0.5);
+    }
+    
+    .dot:hover {
+        background: rgba(201, 168, 118, 0.7);
+    }
+    
+    .open-new-tab {
+        display: block;
+        margin: 20px auto 0;
+        padding: 11px 30px;
+        background: linear-gradient(135deg, #d4a574, #c9a876);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 30px;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+        font-size: 1em;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(201, 168, 118, 0.4);
+    }
+    
+    .open-new-tab:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(201, 168, 118, 0.6);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 70px 20px;
+        font-size: 1.4em;
+        opacity: 0.85;
+        grid-column: 1 / -1;
+        color: #8b6f4e;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        border: 1px dashed rgba(201, 168, 118, 0.4);
+        backdrop-filter: blur(10px);
+        font-style: italic;
+    }
+    
+    .empty-state .emoji {
+        font-size: 3.5em;
+        display: block;
+        margin-bottom: 15px;
+        font-style: normal;
+    }
+    
+    .empty-state .script {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.8em;
+        color: #c9a876;
+        display: block;
+        margin-top: 10px;
+        font-style: normal;
+    }
+    
+    footer {
+        text-align: center;
+        margin-top: 60px;
+        padding: 25px 20px;
+        opacity: 0.8;
+        font-size: 1em;
+        color: #8b6f4e;
+        position: relative;
+        z-index: 1;
+        font-style: italic;
+        letter-spacing: 1px;
+    }
+    
+    .add-modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(60, 45, 35, 0.85);
+        backdrop-filter: blur(10px);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .add-modal.active {
+        display: flex;
+    }
+    
+    .add-modal-content {
+        background: linear-gradient(135deg, rgba(253, 248, 243, 0.98), rgba(250, 240, 230, 0.98));
+        border: 1px solid rgba(201, 168, 118, 0.4);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 520px;
+        width: 90%;
+        box-shadow: 0 20px 60px rgba(139, 111, 78, 0.3);
+        animation: zoomIn 0.4s ease;
+        position: relative;
+    }
+    
+    .add-modal-content::before {
+        content: '';
+        position: absolute;
+        top: 12px; left: 12px; right: 12px; bottom: 12px;
+        border: 1px solid rgba(201, 168, 118, 0.25);
+        border-radius: 15px;
+        pointer-events: none;
+    }
+    
+    .add-modal-content h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-family: 'Great Vibes', cursive;
+        color: #8b6f4e;
+        font-size: 2.8em;
+        font-weight: 400;
+    }
+    
+    .form-group {
+        margin-bottom: 22px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #8b6f4e;
+        font-size: 1.05em;
+        letter-spacing: 1px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1px solid rgba(201, 168, 118, 0.4);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.8);
+        color: #5a4a3a;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.05em;
+        transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #c9a876;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 0 15px rgba(201, 168, 118, 0.25);
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+        min-height: 90px;
+    }
+    
+    .preview-img {
+        max-width: 100%;
+        max-height: 220px;
+        border-radius: 12px;
+        margin: 15px auto;
+        display: none;
+        box-shadow: 0 4px 20px rgba(139, 111, 78, 0.25);
+        border: 3px solid rgba(255, 255, 255, 0.9);
+    }
+    
+    .form-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 25px;
+    }
+    
+    .btn-save {
+        background: linear-gradient(135deg, #d4a574, #c9a876);
+        color: #fff;
+        padding: 12px 32px;
+        border: none;
+        border-radius: 30px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.05em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(201, 168, 118, 0.4);
+    }
+    
+    .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(201, 168, 118, 0.6);
+    }
+    
+    .btn-cancel {
+        background: rgba(255, 255, 255, 0.7);
+        color: #8b6f4e;
+        padding: 12px 32px;
+        border: 1px solid rgba(201, 168, 118, 0.4);
+        border-radius: 30px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.05em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 1px;
+    }
+    
+    .btn-cancel:hover {
+        background: rgba(255, 255, 255, 1);
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.85); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    @media (max-width: 600px) {
+        .monogram { font-size: 3.5em; }
+        .script-title { font-size: 2.5em; }
+        .names { font-size: 1.4em; letter-spacing: 2px; }
+        .date { font-size: 1.1em; letter-spacing: 4px; }
+        .gallery { grid-template-columns: 1fr; }
+        .controls { flex-direction: column; align-items: center; }
+        .modal-content { padding: 25px 55px 20px; }
+        .nav-btn { width: 45px; height: 45px; font-size: 1.5em; }
+        .nav-btn.prev { left: -10px; }
+        .nav-btn.next { right: -10px; }
+        .add-modal-content { padding: 30px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="monogram">М <span class="amp">&</span> А</div>
+    <div class="floral-divider">
+        <span class="line"></span>
+        <span>❦</span>
+        <span class="line"></span>
+    </div>
+    <div class="script-title">Счастливые моменты</div>
+    <h1 class="names">Со Свадьбы Марии и Александра</h1>
+    <div class="date">20 · 02 · 2027</div>
+    <div class="floral-divider">
+        <span class="line"></span>
+        <span>✿</span>
+        <span class="line"></span>
+    </div>
+    <p class="subtitle">Сохраните самые прекрасные мгновения этого дня</p>
+    <div class="controls" style="margin-top: 30px;">
+        <button class="btn btn-add" onclick="openAddModal()">
+            ✦ Добавить фотографии
+        </button>
+        <button class="btn btn-clear" onclick="clearGallery()">
+            Очистить галерею
+        </button>
+        <button class="btn btn-count">
+            ✿ Моментов: <span id="imgCount">0</span>
+        </button>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(event)">
+</header>
+
+<div class="gallery" id="gallery">
+    <div class="empty-state">
+        <span class="emoji">💐</span>
+        Галерея пуста
+        <span class="script">Добавьте ваши первые фотографии</span>
+    </div>
+</div>
+
+<!-- Модальное окно просмотра -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()" title="Закрыть (Esc)">×</button>
+        <button class="nav-btn prev" onclick="changeImage(-1)" title="Предыдущее (←)">‹</button>
+        <button class="nav-btn next" onclick="changeImage(1)" title="Следующее (→)">›</button>
+        <img id="modalImage" src="" alt="">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="modal-counter" id="modalCounter"></div>
+        <div class="dots-container" id="dotsContainer"></div>
+        <a href="#" target="_blank" class="open-new-tab" id="modalLink">♡ Открыть в новой вкладке</a>
+    </div>
+</div>
+
+<!-- Модальное окно добавления с описанием -->
+<div class="add-modal" id="addModal">
+    <div class="add-modal-content">
+        <h2>Новый момент</h2>
+        <div class="form-group">
+            <label for="imgTitle">Название фотографии</label>
+            <input type="text" id="imgTitle" placeholder="Например: Первый танец">
+        </div>
+        <div class="form-group">
+            <label for="imgDesc">Описание момента</label>
+            <textarea id="imgDesc" placeholder="Расскажите об этом особенном мгновении..."></textarea>
+        </div>
+        <img id="previewImg" class="preview-img" alt="Предпросмотр">
+        <div class="form-buttons">
+            <button class="btn-save" onclick="saveImage()">✦ Сохранить</button>
+            <button class="btn-cancel" onclick="closeAddModal()">Отмена</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="floral-divider" style="margin-bottom: 15px;">
+        <span class="line"></span>
+        <span>♡</span>
+        <span class="line"></span>
+    </div>
+    <p>Мария & Александр · 20 февраля 2027 · С любовью сохранено навсегда</p>
+</footer>
+
+<script>
+    let currentImages = [];
+    let currentModalIndex = 0;
+    let pendingFiles = [];
+    let pendingIndex = 0;
+
+    function renderGallery() {
+        const gallery = document.getElementById('gallery');
+        const countEl = document.getElementById('imgCount');
+        
+        gallery.innerHTML = '';
+        countEl.textContent = currentImages.length;
+        
+        if (currentImages.length === 0) {
+            gallery.innerHTML = `
+                <div class="empty-state">
+                    <span class="emoji">💐</span>
+                    Галерея пуста
+                    <span class="script">Добавьте ваши первые фотографии</span>
+                </div>`;
+            return;
+        }
+        
+        currentImages.forEach((img, idx) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `
+                <span class="badge">№ ${idx + 1}</span>
+                <button class="delete-btn" onclick="event.stopPropagation(); deleteImage(${idx})" title="Удалить">×</button>
+                <img src="${img.src}" alt="${img.title}" loading="lazy">
+                <div class="overlay">
+                    <h3>${img.title}</h3>
+                    <p>${img.desc || 'Без описания'}</p>
+                </div>
+            `;
+            item.addEventListener('click', () => openModal(idx));
+            gallery.appendChild(item);
+        });
+    }
+
+    function openAddModal() {
+        document.getElementById('fileInput').click();
+    }
+
+    function handleFiles(event) {
+        const files = event.target.files;
+        if (!files.length) return;
+        
+        pendingFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
+        if (pendingFiles.length === 0) {
+            event.target.value = '';
+            return;
+        }
+        
+        pendingIndex = 0;
+        processNextFile();
+        event.target.value = '';
+    }
+
+    function processNextFile() {
+        if (pendingIndex >= pendingFiles.length) {
+            pendingFiles = [];
+            return;
+        }
+        
+        const file = pendingFiles[pendingIndex];
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+            const preview = document.getElementById('previewImg');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            
+            document.getElementById('imgTitle').value = file.name.replace(/\.[^/.]+$/, "");
+            document.getElementById('imgDesc').value = '';
+            
+            document.getElementById('addModal').classList.add('active');
+        };
+        
+        reader.readAsDataURL(file);
+    }
+
+    function saveImage() {
+        const title = document.getElementById('imgTitle').value.trim() || 'Без названия';
+        const desc = document.getElementById('imgDesc').value.trim() || 'Без описания';
+        const src = document.getElementById('previewImg').src;
+        
+        currentImages.push({ title, desc, src });
+        pendingIndex++;
+        
+        closeAddModal();
+        renderGallery();
+        
+        if (pendingIndex < pendingFiles.length) {
+            setTimeout(() => processNextFile(), 300);
+        } else {
+            pendingFiles = [];
+        }
+    }
+
+    function closeAddModal() {
+        document.getElementById('addModal').classList.remove('active');
+        document.getElementById('previewImg').style.display = 'none';
+        document.getElementById('imgTitle').value = '';
+        document.getElementById('imgDesc').value = '';
+    }
+
+    function deleteImage(idx) {
+        if (confirm('Удалить эту фотографию?')) {
+            currentImages.splice(idx, 1);
+            if (currentModalIndex >= currentImages.length) {
+                currentModalIndex = Math.max(0, currentImages.length - 1);
+            }
+            renderGallery();
+        }
+    }
+
+    function clearGallery() {
+        if (currentImages.length === 0) {
+            alert('Галерея уже пуста!');
+            return;
+        }
+        if (confirm('Очистить всю галерею? Все фотографии будут удалены.')) {
+            currentImages = [];
+            closeModal();
+            renderGallery();
+        }
+    }
+
+    function openModal(idx) {
+        currentModalIndex = idx;
+        updateModalContent();
+        document.getElementById('modal').classList.add('active');
+    }
+
+    function updateModalContent() {
+        if (currentImages.length === 0) return;
+        
+        const img = currentImages[currentModalIndex];
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCounter = document.getElementById('modalCounter');
+        const modalLink = document.getElementById('modalLink');
+        const dotsContainer = document.getElementById('dotsContainer');
+        
+        modalImage.style.opacity = '0';
+        setTimeout(() => {
+            modalImage.src = img.src;
+            modalImage.onload = () => {
+                modalImage.style.opacity = '1';
+            };
+        }, 150);
+        
+        modalTitle.textContent = img.title;
+        modalCounter.textContent = `— ${currentModalIndex + 1} из ${currentImages.length} —`;
+        
+        modalLink.href = img.src;
+        
+        dotsContainer.innerHTML = '';
+        currentImages.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'dot' + (i === currentModalIndex ? ' active' : '');
+            dot.onclick = (e) => {
+                e.stopPropagation();
+                currentModalIndex = i;
+                updateModalContent();
+            };
+            dotsContainer.appendChild(dot);
+        });
+        
+        const prevBtn = document.querySelector('.nav-btn.prev');
+        const nextBtn = document.querySelector('.nav-btn.next');
+        prevBtn.disabled = currentModalIndex === 0;
+        nextBtn.disabled = currentModalIndex === currentImages.length - 1;
+    }
+
+    function changeImage(direction) {
+        const newIndex = currentModalIndex + direction;
+        if (newIndex >= 0 && newIndex < currentImages.length) {
+            currentModalIndex = newIndex;
+            updateModalContent();
+        }
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.remove('active');
+    }
+
+    document.getElementById('modal').addEventListener('click', (e) => {
+        if (e.target.id === 'modal') closeModal();
+    });
+
+    document.getElementById('addModal').addEventListener('click', (e) => {
+        if (e.target.id === 'addModal') closeAddModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (document.getElementById('addModal').classList.contains('active')) {
+            if (e.key === 'Escape') closeAddModal();
+            return;
+        }
+        if (!document.getElementById('modal').classList.contains('active')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') changeImage(-1);
+        if (e.key === 'ArrowRight') changeImage(1);
+    });
+
+    renderGallery();
+</script>
+
+</body>
+</html>
